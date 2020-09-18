@@ -24,7 +24,9 @@ body {
   font-family: "Manrope", sans-serif;
   font-weight: 500;
   overflow: hidden;
-  height: 100vh;
+  min-height: 100vh;
+  /* width: 100vw;  */
+  /* A side effect with flexbox when I set the width of the parent container. */
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -39,6 +41,7 @@ h2 {
   color: var(--darkBlue);
 }
 h1 {
+  margin-top: 0;
   font-size: 1.5em;
 }
 h2 {
@@ -51,16 +54,38 @@ p {
 /* grid system -- mobile first! */
 .wrapper {
   background-color: white;
-  height: 75vh;
+  height: 80vh;
+  flex: 0 0 90%;
   border-radius: 1em;
+
+  display: flex;
+  flex-flow: column wrap;
+}
+header {
+  flex: 0 0 25%;
+  display: flex;
+}
+picture {
+  width: 100%;
+  height: 100%;
+}
+header,
+[alt*="decor"] {
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
 }
 [alt*="decor"] {
-  width: 100%;
-  width: 90vw;
-  height: 100%;
+  width: inherit;
+  height: inherit;
   clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 0% 85%);
+  /* object-fit: contain; */
+  /* A little margin appear when this property is applied */
+  object-position: 50% 50%;
 }
-main {
+main .padded {
+  margin: -1em 2em 0 2em;
+}
+.row-mobile {
   margin: auto 2em;
 }
 .row-mobile,
@@ -88,23 +113,54 @@ main {
   flex: 0 0 65%;
 }
 .row * {
-  margin: 0;
+  margin: 0; /* Reduce the space inside the container */
 }
 .arrow {
   background-color: var(--lightBlue);
   border-radius: 50%;
+  padding: 1em;
 }
 .arrow:hover,
 .arrow:focus {
   cursor: pointer;
 }
-
 .active {
   display: none;
 }
+.active {
+  background-color: var(--darkBlue);
+
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding: 0 2em;
+}
+.active > *:first-child {
+  flex: 0 0 27%;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+}
+.active > *:last-child {
+  /* Select the share icon on active mode */
+  flex: 0 0 10%;
+  border-radius: 50%;
+  padding: 0.5em;
+  background-color: var(--desaturatedBlue);
+}
+.active .row-links {
+  flex: 0 0 60%;
+}
+.row-links > *:nth-child(2) {
+  margin: 0 2em;
+}
+
 .active img {
-  width: 2em;
-  height: 2em;
+  /* All the svg image in the inactive row */
+  width: 1.25em;
+  height: 1.25em;
+}
+
+footer {
+  flex: 0 0 5%;
 }
 
 .attribution {
