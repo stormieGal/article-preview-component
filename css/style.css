@@ -129,7 +129,6 @@ main .padded {
 }
 .active {
   background-color: var(--darkBlue);
-
   flex-flow: row nowrap;
   justify-content: space-between;
   padding: 0 2em;
@@ -173,13 +172,122 @@ footer {
 }
 
 /* Small Screen Sizes */
-@media screen and (max-width: 600px) {
-}
+/* @media screen and (max-width: 600px) {
+} */
 
 /* Medium screen */
-@media screen and (max-width: 992px) {
+@media screen and (min-width: 700px) {
+  body {
+    overflow: hidden;
+    height: 100vh;
+    flex-flow: column nowrap;
+  }
+  .wrapper {
+    flex: 0 0 calc(100% / 3);
+    /* Caveats with calc? Any polyfills? */
+    width: 50%;
+    border-radius: none;
+  }
+  header {
+    flex: 0 100%;
+    width: 40%;
+  }
+
+  h1 {
+    margin-top: 2em;
+    font-size: 1.3em;
+  }
+  header,
+  [alt*="decor"] {
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 1em;
+  }
+  [alt*="decor"] {
+    clip-path: polygon(0% 0%, 80% 0%, 80% 100%, 0% 100%);
+  }
+  main {
+    height: 90%;
+  }
+  main .padded,
+  .row-mobile {
+    margin-left: 0;
+  }
+  .row-mobile {
+    position: relative;
+  }
+  .active {
+    position: absolute;
+    width: 100%;
+    bottom: 125%;
+    left: 40%;
+    border-radius: 1em;
+  }
+  .active:after {
+    content: "";
+    display: block;
+    background-color: var(--darkBlue);
+    height: 0;
+    width: 0;
+    border-left: 10px solid white;
+    border-right: 10px solid white;
+    border-top: 20px solid var(--darkBlue);
+    position: absolute;
+    left: 50%;
+    top: 100%;
+  }
+  [href*="normal"] {
+    display: none;
+  }
+  main,
+  footer {
+    width: 60%;
+  }
+
+  footer {
+    display: inline-block;
+    margin: 0;
+    font-size: 0.5em;
+    margin-top: 1em;
+  }
 }
 
 /* Large screen */
 @media screen and (min-width: 993px) {
+  body {
+    overflow: hidden;
+    height: 100vh;
+    flex-flow: column nowrap;
+  }
+  .wrapper {
+    flex: 0 0 calc(100% / 3);
+    /* Caveats with calc? Any polyfills? */
+    /* width: 50%; */
+    height: 40%;
+  }
+
+  h1 {
+    font-size: 1.6em;
+  }
+  p,
+  h2 {
+    font-size: 1.2em;
+  }
+  main .padded {
+    margin-right: 5em;
+  }
+
+  [alt*="decor"] {
+    clip-path: polygon(0% 0%, 80% 0%, 80% 100%, 0% 100%);
+  }
+
+  .active {
+    width: 65%;
+  }
+  .active .row-links {
+    flex: none;
+  }
+
+  footer {
+    display: none;
+  }
 }
